@@ -1,0 +1,186 @@
+.footer {
+    &__container {
+    }
+
+    &__body {
+        border-top: 1px solid #d8d8d8;
+        display: grid;
+        grid-template-columns: 250px 1fr 290px;
+        @include adaptiv-value("padding-top", 80, 30, 1);
+        @include adaptiv-value("padding-bottom", 60, 30, 1);
+        @include adaptiv-value("column-gap", 80, 0, 1);
+        @media (max-width: $md1+px) {
+            grid-template-rows: auto auto;
+            grid-template-columns: 1fr 290px;
+        }
+        @media (max-width: $md2+px) {
+            display: block;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        @media (max-width: $md1+px) {
+            grid-column: span 2;
+            @include adaptiv-value("margin-bottom", 40, 30, 1);
+        }
+    }
+
+    &__logo {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29 / 24 * 100%;
+        color: #000000;
+        @include adaptiv-value("margin-bottom", 16, 10, 1);
+    }
+
+    &__text {
+        color: $grayColor;
+        line-height: 150%;
+        &:not(:last-child) {
+            @include adaptiv-value("margin-bottom", 16, 10, 1);
+        }
+    }
+
+    &__contacts {
+    }
+
+    &__menu {
+        @media (max-width: $md2+px) {
+            @include adaptiv-value("margin-bottom", 40, 30, 1);
+        }
+    }
+
+    &__subscribe {
+    }
+}
+.contacts-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &__item {
+        display: inline-flex;
+        align-items: center;
+        line-height: 150%;
+        transition: all 0.3s ease 0s;
+        color: $grayColor;
+        &::before {
+            margin: 0px 8px 0px 0px;
+        }
+        &:not(:last-child) {
+            @include adaptiv-value("margin-bottom", 16, 10, 1);
+        }
+        @media (any-hover: hover) {
+            &:hover {
+                color: $orangeColor;
+            }
+        }
+    }
+}
+.menu-footer {
+    @media (min-width: $md3+px) {
+        display: flex;
+    }
+    &__column {
+        @media (min-width: $md3+px) {
+            flex: 0 1 33.333%;
+        }
+        @media (max-width: $md3+px) {
+            @include adaptiv-value("margin-bottom", 30, 15, 1);
+        }
+    }
+
+    &__title {
+        cursor: default;
+        @media (min-width: $md3+px) {
+            @include adaptiv-value("margin-bottom", 16, 10, 1);
+        }
+        ._init & {
+            display: flex;
+            width: 100%;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            @extend ._icon-arrow-down;
+            &::before {
+                @extend %ic;
+                transition: all 0.3s ease 0s;
+                font-size: 14px;
+            }
+        }
+        &._active {
+            &::before {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &__list {
+        li {
+            &:not(:last-child) {
+                margin: 0px 0px 15px 0px;
+            }
+        }
+        @media (max-width: $md3+px) {
+            padding: 15px 0px 0px 0px;
+        }
+    }
+
+    &__link {
+        color: $darkGrayColor;
+        transition: all 0.3s ease 0s;
+        line-height: 120%;
+        font-weight: 500;
+        @media (any-hover: hover) {
+            &:hover {
+                color: $orangeColor;
+            }
+        }
+    }
+}
+.subscribe {
+    &__title {
+        @include adaptiv-value("margin-bottom", 16, 10, 1);
+    }
+
+    &__form {
+        display: flex;
+        position: relative;
+        .form__error {
+            position: absolute;
+            top: 100%;
+            left: 12px;
+            color: red;
+            font-size: 14px;
+            margin: 3px 0px 0px 0px;
+        }
+    }
+
+    &__button {
+        flex: 0 0 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        background-color: $orangeColor;
+        margin: 0px 0px 0px 4px;
+        transition: all 0.3s ease 0s;
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $darkGrayColor;
+            }
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0px 12px;
+        background-color: #f4f5f7;
+        font-size: 16px;
+        line-height: 150%;
+        color: #828282;
+    }
+}

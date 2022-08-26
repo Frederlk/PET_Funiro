@@ -1,0 +1,23 @@
+.btn {
+    display: inline-flex;
+    padding: 0px 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    min-height: 48px;
+    border: 1px solid $orangeColor;
+
+    &_white {
+        color: $orangeColor;
+        background-color: #fff;
+        border: 1px solid #fff;
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $orangeColor;
+                border: 1px solid $orangeColor;
+                color: #fff;
+            }
+        }
+    }
+}
