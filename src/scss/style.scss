@@ -18,6 +18,13 @@ $fontFamily: "Gilroy";
 $fontSize: rem(16); // где 14(px) - размер шрифта по умолчанию из макета
 
 // Основные цвета
+$white: #fff;
+$black: #000;
+$light_01: #fcf8f3;
+$light_02: #e0e0e0;
+$light_03: #f4f5f7;
+$light_04: #d8d8d8;
+$blue: #262f56;
 $orangeColor: #e89f71;
 $grayColor: #898989;
 $darkGrayColor: #616161;
@@ -79,48 +86,15 @@ body {
 }
 // Ограничивающий контейнер ======================================================================================================================================================================================================================
 
-/*
-(i) Стили будут применяться ко 
-всем классам содержащим *__container
-Например header__container, main__container и т.д.
-Снипет (HTML): cnt
-*/
-@if ($responsiveType==1) {
-    // Отзывчивая
-    [class*="__container"] {
-        @if ($maxWidthContainer>0) {
-            max-width: rem($maxWidthContainer);
-            box-sizing: content-box;
-            margin: 0 auto;
-        }
-        @if ($containerPadding>0) {
-            padding: 0 rem(math.div($containerPadding, 2));
-        }
-    }
-} @else {
-    // По брейк-поинтам
-    [class*="__container"] {
+// (i) Стили будут применяться ко всем классам содержащим *__container
+[class*="__container"] {
+    @if ($maxWidthContainer>0) {
+        max-width: rem($maxWidthContainer);
+        box-sizing: content-box;
         margin: 0 auto;
-        @if ($maxWidthContainer>0) {
-            max-width: rem($maxWidthContainer);
-            box-sizing: content-box;
-        } @else {
-            @if ($containerPadding>0) {
-                padding: 0 rem(math.div($containerPadding, 2));
-            }
-        }
-        @media (max-width: $pc) {
-            max-width: rem(970);
-        }
-        @media (max-width: $tablet) {
-            max-width: rem(750);
-        }
-        @media (max-width: $mobile) {
-            max-width: none;
-            @if ($containerPadding>0 and $maxWidthContainer>0) {
-                padding: 0 rem(math.div($containerPadding, 2));
-            }
-        }
+    }
+    @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
     }
 }
 

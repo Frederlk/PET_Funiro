@@ -3,17 +3,17 @@
     }
 
     &__body {
-        border-top: 1px solid #d8d8d8;
+        border-top: rem(1) solid $light_04;
         display: grid;
-        grid-template-columns: 250px 1fr 290px;
-        @include adaptiv-value("padding-top", 80, 30, 1);
-        @include adaptiv-value("padding-bottom", 60, 30, 1);
-        @include adaptiv-value("column-gap", 80, 0, 1);
-        @media (max-width: $md1+px) {
+        grid-template-columns: rem(250) 1fr rem(290);
+        @include adaptiveValue("padding-top", 80, 30);
+        @include adaptiveValue("padding-bottom", 60, 30);
+        @include adaptiveValue("column-gap", 80, 0);
+        @media (max-width: $pc) {
             grid-template-rows: auto auto;
-            grid-template-columns: 1fr 290px;
+            grid-template-columns: 1fr rem(290);
         }
-        @media (max-width: $md2+px) {
+        @media (max-width: $tablet) {
             display: block;
         }
     }
@@ -22,25 +22,25 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        @media (max-width: $md1+px) {
+        @media (max-width: $pc) {
             grid-column: span 2;
-            @include adaptiv-value("margin-bottom", 40, 30, 1);
+            @include adaptiveValue("margin-bottom", 40, 30);
         }
     }
 
     &__logo {
         font-weight: 700;
-        font-size: 24px;
-        line-height: 29 / 24 * 100%;
-        color: #000000;
-        @include adaptiv-value("margin-bottom", 16, 10, 1);
+        font-size: rem(24);
+        line-height: math.div(29, 24);
+        color: $black;
+        @include adaptiveValue("margin-bottom", 16, 10);
     }
 
     &__text {
         color: $grayColor;
         line-height: 150%;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 16, 10, 1);
+            @include adaptiveValue("margin-bottom", 16, 10);
         }
     }
 
@@ -48,8 +48,8 @@
     }
 
     &__menu {
-        @media (max-width: $md2+px) {
-            @include adaptiv-value("margin-bottom", 40, 30, 1);
+        @media (max-width: $tablet) {
+            @include adaptiveValue("margin-bottom", 40, 30);
         }
     }
 
@@ -64,13 +64,13 @@
         display: inline-flex;
         align-items: center;
         line-height: 150%;
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s;
         color: $grayColor;
         &::before {
-            margin: 0px 8px 0px 0px;
+            margin-right: rem(8);
         }
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 16, 10, 1);
+            @include adaptiveValue("margin-bottom", 16, 10);
         }
         @media (any-hover: hover) {
             &:hover {
@@ -80,37 +80,40 @@
     }
 }
 .menu-footer {
-    @media (min-width: $md3+px) {
+    @media (min-width: $mobile) {
         display: flex;
     }
     &__column {
-        @media (min-width: $md3+px) {
+        @media (min-width: $mobile) {
             flex: 0 1 33.333%;
         }
-        @media (max-width: $md3+px) {
-            @include adaptiv-value("margin-bottom", 30, 15, 1);
+        @media (max-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 30, 15);
         }
     }
 
     &__title {
         cursor: default;
-        @media (min-width: $md3+px) {
-            @include adaptiv-value("margin-bottom", 16, 10, 1);
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 16, 10);
         }
-        ._init & {
+        ._spoller-init & {
             display: flex;
             width: 100%;
             flex-direction: row-reverse;
             justify-content: space-between;
             align-items: center;
+            transition: color 0.3s ease 0s;
             @extend ._icon-arrow-down;
+            @extend %tap;
             &::before {
                 @extend %ic;
-                transition: all 0.3s ease 0s;
-                font-size: 14px;
+                transition: transform 0.3s ease 0s;
+                font-size: rem(14);
             }
         }
-        &._active {
+        &._spoller-active {
+            color: $orangeColor;
             &::before {
                 transform: rotate(-180deg);
             }
@@ -120,17 +123,17 @@
     &__list {
         li {
             &:not(:last-child) {
-                margin: 0px 0px 15px 0px;
+                margin-bottom: rem(15);
             }
         }
-        @media (max-width: $md3+px) {
-            padding: 15px 0px 0px 0px;
+        @media (max-width: $mobile) {
+            padding-top: rem(15);
         }
     }
 
     &__link {
         color: $darkGrayColor;
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s;
         line-height: 120%;
         font-weight: 500;
         @media (any-hover: hover) {
@@ -142,7 +145,7 @@
 }
 .subscribe {
     &__title {
-        @include adaptiv-value("margin-bottom", 16, 10, 1);
+        @include adaptiveValue("margin-bottom", 16, 10);
     }
 
     &__form {
@@ -151,23 +154,23 @@
         .form__error {
             position: absolute;
             top: 100%;
-            left: 12px;
+            left: 0;
             color: red;
-            font-size: 14px;
-            margin: 3px 0px 0px 0px;
+            font-size: rem(14);
+            margin-top: rem(5);
         }
     }
 
     &__button {
-        flex: 0 0 45px;
-        height: 45px;
+        flex: 0 0 rem(45);
+        height: rem(45);
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 18px;
+        font-size: rem(18);
         background-color: $orangeColor;
-        margin: 0px 0px 0px 4px;
-        transition: all 0.3s ease 0s;
+        margin-left: rem(4);
+        transition: background-color 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
                 background-color: $darkGrayColor;
@@ -177,10 +180,9 @@
 
     &__input {
         width: 100%;
-        padding: 0px 12px;
-        background-color: #f4f5f7;
-        font-size: 16px;
+        padding: 0px rem(12);
+        background-color: $light_03;
         line-height: 150%;
-        color: #828282;
+        color: $grayColor;
     }
 }

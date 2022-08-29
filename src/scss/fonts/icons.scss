@@ -9,6 +9,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+[class*="_icon-"] {
+    &:before {
+        @extend %ic;
+        display: block;
+    }
+}
+
 ._icon-support:before {
     content: "\e909";
 }

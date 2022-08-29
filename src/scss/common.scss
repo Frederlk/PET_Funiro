@@ -1,9 +1,9 @@
 //<ОСНОВНОЙ БЛОК>====================================================================================================
 ._footer-title {
     font-weight: 700;
-    @include adaptiv-font(24, 20, 1);
-    line-height: 29 / 24 * 100%;
-    color: #000000;
+    @include adaptiveValue("font-size", 24, 20);
+    line-height: math.div(29, 24);
+    color: $black;
 }
 
 ._flyImage-ibg {
@@ -14,7 +14,7 @@
 }
 
 ._title {
-    @include adaptiv-font(40, 24, 1);
+    @include adaptiveValue("font-size", 40, 24);
     font-weight: 700;
     line-height: 120%;
     text-align: center;
@@ -22,22 +22,23 @@
 
 .slider-arrows {
     display: grid;
-    grid-template-columns: repeat(2, 48px);
-    column-gap: 8px;
+    grid-template-columns: repeat(2, rem(48));
+    column-gap: rem(8);
 }
+
 .slider-arrow {
     pointer-events: auto;
     border-radius: 50%;
-    height: 48px;
-    background: hsla(23, 72%, 68%, 0.3);
+    height: rem(48);
+    background-color: hsla(23, 72%, 68%, 0.3);
     color: $orangeColor;
-    font-size: 12px;
+    font-size: rem(12);
     cursor: pointer;
-    transition: all 0.3s ease 0s;
+    transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
     @media (any-hover: hover) {
         &:hover {
-            color: #fff;
-            background: hsla(23, 72%, 68%, 1);
+            color: $white;
+            background-color: hsla(23, 72%, 68%, 1);
         }
     }
     &_prev {
@@ -52,53 +53,52 @@
         }
     }
     &_white {
-        background-color: #fff;
+        background-color: $white;
         color: $orangeColor;
-        box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px rem(4) rem(14) rem(1) rgba(0, 0, 0, 0.16);
     }
 }
+
 .swiper-pagination-bullets {
     display: flex;
     flex-wrap: wrap;
+    gap: rem(12);
+    .swiper-pagination-bullet {
+        cursor: pointer;
+        flex: 0 0 rem(27);
+        height: rem(27);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: rem(2) 0px;
+        &::after {
+            content: "";
+            width: rem(11);
+            height: rem(11);
+            background-color: $light_04;
+            border-radius: 50%;
+            transition: background-color 0.3s ease 0s;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            width: rem(27);
+            height: rem(27);
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            border: rem(1) solid $orangeColor;
+            transform: scale(0);
+            transition: transform 0.3s ease 0s;
+        }
+    }
+    .swiper-pagination-bullet-active {
+        &::after {
+            background-color: $orangeColor;
+        }
+        &::before {
+            transform: scale(1);
+        }
+    }
 }
-.swiper-pagination-bullet {
-    cursor: pointer;
-    flex: 0 0 27px;
-    height: 27px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2px 0px;
-    &:not(:last-child) {
-        margin-right: 12px;
-    }
-    &::after {
-        content: "";
-        width: 11px;
-        height: 11px;
-        background-color: #d8d8d8;
-        border-radius: 50%;
-        transition: background-color 0.3s ease 0s;
-    }
-    &::before {
-        content: "";
-        position: absolute;
-        width: 27px;
-        height: 27px;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        border: 1px solid $orangeColor;
-        transform: scale(0);
-    }
-}
-.swiper-pagination-bullet-active {
-    &::after {
-        background-color: $orangeColor;
-    }
-    &::before {
-        transform: scale(1);
-    }
-}
-//</ОСНОВНОЙ БЛОК>====================================================================================================
