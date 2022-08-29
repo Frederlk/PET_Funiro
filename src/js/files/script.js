@@ -1,5 +1,5 @@
 // Подключение функционала "Чертогов Фрилансера"
-import { isMobile } from "./functions.js";
+import { isMobile, removeClasses } from "./functions.js";
 // Подключение списка активных модулей
 import { flsModules } from "./modules.js";
 
@@ -13,7 +13,7 @@ window.onload = function () {
                 targetElement.closest(".menu__item").classList.toggle("_hover");
             }
             if (!targetElement.closest(".menu__item") && document.querySelectorAll(".menu__item._hover").length > 0) {
-                _removeClasses(document.querySelectorAll(".menu__item._hover"), "_hover");
+                removeClasses(document.querySelectorAll(".menu__item._hover"), "_hover");
             }
         }
         if (targetElement.classList.contains("search-form__icon")) {
@@ -41,33 +41,17 @@ window.onload = function () {
         }
 
         if (targetElement.classList.contains("cart-list__delete")) {
-            const productId = targetElement.closese(".cart-list__item").dataset.cartPid;
+            const productId = targetElement.closest(".cart-list__item").dataset.cartPid;
             updateCart(targetElement, productId, false);
             e.preventDefault();
         }
     }
 
-    //header
-
-    const headerElement = document.querySelector(".header");
-
-    const callback = function (entries, observer) {
-        if (entries[0].isIntersecting) {
-            headerElement.classList.remove("_scroll");
-        } else {
-            headerElement.classList.add("_scroll");
-        }
-    };
-
-    const headerObserver = new IntersectionObserver(callback);
-    headerObserver.observe(headerElement);
-
     //load More Products
-
     async function getProducts(button) {
         if (!button.classList.contains("_hold")) {
             button.classList.add("_hold");
-            const file = "json/products.json";
+            const file = "files/json/products.json";
             let response = await fetch(file, {
                 method: "GET",
             });
@@ -114,20 +98,20 @@ window.onload = function () {
                 }
 
                 let productTemplateImage = `
-          <a href="${productUrl}" class="item-product__image _ibg">
-             <img src="img/products/${productImage}" alt="${productTitle}">
-          </a>
-       `;
+                    <a href="${productUrl}" class="item-product__image-ibg">
+                        <img src="img/products/${productImage}" alt="${productTitle}">
+                    </a>
+                `;
 
                 let productTemplateBodyStart = `<div class="item-product__body">`;
                 let productTemplateBodyEnd = `</div>`;
 
                 let productTemplateContent = `
-          <div class="item-product__content">
-             <h3 class="item-product__title">${productTitle}</h3>
-             <div class="item-product__text">${productText}</div>
-          </div>
-       `;
+                    <div class="item-product__content">
+                        <h3 class="item-product__title">${productTitle}</h3>
+                        <div class="item-product__text">${productText}</div>
+                    </div>
+                `;
 
                 let productTemplatePrices = "";
                 let productTemplatePricesStart = `<div class="item-product__prices">`;
@@ -143,14 +127,14 @@ window.onload = function () {
                 productTemplatePrices += productTemplatePricesEnd;
 
                 let productTemplateActions = `
-          <div class="item-product__actions actions-product">
-             <div class="actions-product__body">
-                <a href="" class="actions-product__button btn btn_white">Add to cart</a>
-                <a href="${productShareUrl}" class="actions-product__link _icon-share">Share</a>
-                <a href="${productLikeUrl}" class="actions-product__link _icon-favorite">Like</a>
-             </div>
-          </div>
-       `;
+                    <div class="item-product__actions actions-product">
+                        <div class="actions-product__body">
+                            <a href="" class="actions-product__button btn btn_white">Add to cart</a>
+                            <a href="${productShareUrl}" class="actions-product__link _icon-share">Share</a>
+                            <a href="${productLikeUrl}" class="actions-product__link _icon-favorite">Like</a>
+                        </div>
+                    </div>
+                `;
 
                 let productTemplateBody = "";
                 productTemplateBody += productTemplateBodyStart;
@@ -179,7 +163,7 @@ window.onload = function () {
 
             const cart = document.querySelector(".cart-header__icon");
             const product = document.querySelector(`[data-pid="${productId}"]`);
-            const productImage = product.querySelector(".item-product__image");
+            const productImage = product.querySelector(".item-product__image-ibg");
 
             const productImageFly = productImage.cloneNode(true);
 
@@ -188,13 +172,13 @@ window.onload = function () {
             const productImageFlyTop = productImage.getBoundingClientRect().top;
             const productImageFlyLeft = productImage.getBoundingClientRect().left;
 
-            productImageFly.setAttribute("class", "_flyImage _ibg");
+            productImageFly.setAttribute("class", "_flyImage-ibg");
             productImageFly.style.cssText = `
-          left: ${productImageFlyLeft}px;
-          top: ${productImageFlyTop}px;
-          width: ${productImageFlyWidth}px;
-          height: ${productImageFlyHeight}px;
-          `;
+            left: ${productImageFlyLeft}px;
+            top: ${productImageFlyTop}px;
+            width: ${productImageFlyWidth}px;
+            height: ${productImageFlyHeight}px;
+            `;
 
             document.body.append(productImageFly);
 
@@ -202,14 +186,14 @@ window.onload = function () {
             const cartFlyTop = cart.getBoundingClientRect().top;
 
             productImageFly.style.cssText = `
-          left: ${cartFlyLeft}px;
-          top: ${cartFlyTop}px;
-          width: 0px;
-          height: 0px;
-          opacity: 0;
-          `;
+            left: ${cartFlyLeft}px;
+            top: ${cartFlyTop}px;
+            width: 0px;
+            height: 0px;
+            opacity: 0;
+            `;
 
-            productImageFly.addEventListener("transotionend", function () {
+            productImageFly.addEventListener("transitionend", function () {
                 if (productButton.classList.contains("_fly")) {
                     productImageFly.remove();
                     updateCart(productButton, productId);
@@ -235,15 +219,15 @@ window.onload = function () {
             }
             if (!cartProduct) {
                 const product = document.querySelector(`[data-pid="${productId}"]`);
-                const cartProductImage = product.querySelector(".item-product__image").innerHTML;
+                const cartProductImage = product.querySelector(".item-product__image-ibg").innerHTML;
                 const cartProductTitle = product.querySelector(".item-product__title").innerHTML;
                 const cartProductContent = `
-          <a href="" class="cart-list__image _ibg">${cartProductImage}</a>
-          <div class="cart-list__body">
-             <a href="" class="cart-list__title">${cartProductTitle}</a>
-             <div class="cart-list__quantity">Quantity: <span>1</span></div>
-             <a href="" class="cart-list__delete">Delete</a>
-          </div>`;
+                <a href=${cartProductTitle} class="cart-list__image-ibg">${cartProductImage}</a>
+                <div class="cart-list__body">
+                    <a href=${cartProductTitle} class="cart-list__title">${cartProductTitle}</a>
+                    <div class="cart-list__quantity">Quantity: <span>1</span></div>
+                    <button type='button' class="cart-list__delete">Delete</и>
+                </div>`;
                 cartList.insertAdjacentHTML(
                     "beforeend",
                     `<li data-cart-pid="${productId}" class="cart-list__item">${cartProductContent}</li>`
@@ -272,51 +256,47 @@ window.onload = function () {
         }
     }
 
-    // furniture gallery
-    /*
-       const furniture = document.querySelector('.furniture__body');
-       if (furniture && !isMobile.any()) {
-          const furnitureItems = document.querySelector('.furniture__items');
-          const furnitureColumn = document.querySelector('.furniture__column');
-    
-          const speed = furniture.dataset.speed;
-    
-          let positionX = 0;
-          let coordXprocent = 0;
-    
-          function setMouseGalleryStyle() {
-             let furnitureItemsWidth = 0;
-             furnitureColumn.forEach(element => {
-                furnitureItemsWidth += element.offsetWidthl
-             });
-    
-             const furnitureDifferent = furnitureItemsWidth - furniture.offsetWidth;
-             const distX = Math.floor(coordXprocent - positionX);
-    
-             positionX = positionX + (distX * speed);
-             let position = furnitureDifferent / 200 * positionX;
-    
-             furnitureItems.style.cssText = `transform: translate3d(${-position}px,0,0);`;
-    
-             if (Math.abs(distX) > 0) {
+    const furniture = document.querySelector(".furniture__body");
+    if (furniture && !isMobile.any()) {
+        const furnitureItems = document.querySelector(".furniture__items");
+        const furnitureColumn = document.querySelectorAll(".furniture__column");
+
+        const speed = furniture.dataset.speed;
+
+        let positionX = 0;
+        let coordXprocent = 0;
+        function setMouseGalleryStyle() {
+            let furnitureItemsWidth = 0;
+            furnitureColumn.forEach((element) => {
+                furnitureItemsWidth += element.offsetWidth;
+            });
+
+            const furnitureDifferent = furnitureItemsWidth - furniture.offsetWidth;
+            const distX = Math.floor(coordXprocent - positionX);
+
+            positionX = positionX + distX * speed;
+            let position = (furnitureDifferent / 200) * positionX;
+
+            furnitureItems.style.cssText = `transform: translate3d(${position}px,0,0);`;
+
+            if (Math.abs(distX) > 0) {
                 requestAnimationFrame(setMouseGalleryStyle);
-    
-             } else {
-                furniture.classList.remove('_init');
-             }
-          }
-    
-          furniture.addEventListener('mousemove', function (e) {
-             const furnitureWidth = furniture.offsetWidth;
-    
-             const coordX = e.pageX - furnitureWidth / 2;
-    
-             coordXprocent = coordX / furnitureWidth * 200;
-    
-             if (!furniture.classList.contains('_init')) {
+            } else {
+                furniture.classList.remove("_init");
+            }
+        }
+
+        furniture.addEventListener("mousemove", function (e) {
+            const furnitureWidth = furniture.offsetWidth;
+
+            const coordX = e.pageX - furnitureWidth / 2;
+
+            coordXprocent = (coordX / furnitureWidth) * 200;
+
+            if (!furniture.classList.contains("_init")) {
                 requestAnimationFrame(setMouseGalleryStyle);
-                furniture.classList.add('_init');
-             }
-          });
-       }*/
+                furniture.classList.add("_init");
+            }
+        });
+    }
 };

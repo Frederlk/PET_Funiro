@@ -1,29 +1,29 @@
 .main-slider {
-    background: #fcf8f3;
+    background-color: $light_01;
     &__container {
         position: relative;
         @media (min-width: $tablet) {
             &::before {
                 content: "";
-                background: #f9f1e7;
+                background: $light_05;
                 position: absolute;
                 top: 0;
                 width: 100vw;
-                right: 376px;
+                right: rem(376);
                 height: 100%;
             }
         }
     }
 
     &__body {
-        padding: 140px 0px 0px 0px;
+        padding-top: rem(140);
         position: relative;
         z-index: 2;
         @media (max-width: $tablet) {
-            padding: 80px 0px 0px 0px;
+            padding-top: rem(80);
         }
         @media (max-width: $mobile) {
-            padding: 60px 0px 0px 0px;
+            padding-top: rem(60);
         }
         @media (min-width: $tablet) {
             display: flex;
@@ -35,7 +35,7 @@
         flex: 0 0 percent(494, 1240);
         @include adaptiveValue("margin-bottom", 80, 15);
         @media (max-width: $tablet) {
-            margin: 0px -15px;
+            margin: 0px rem(-15);
         }
     }
 
@@ -44,25 +44,25 @@
         min-width: 0;
         align-self: flex-end;
         @media (min-width: $tablet) {
-            padding: 0px 0px 0px 32px;
+            padding-left: rem(32);
         }
     }
 }
 .content-main {
     position: relative;
     z-index: 5;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: rem(15);
+    padding-left: rem(15);
     @include adaptiveValue("padding-top", 60, 15);
     @include adaptiveValue("padding-bottom", 60, 15);
     background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(31px);
+    backdrop-filter: blur(rem(31));
     @media (min-width: $tablet) {
         @include adaptiveValue("padding", 60, 0);
         background: rgba(255, 255, 255, 0.9);
-        @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+        @supports ((-webkit-backdrop-filter: blur(rem(31))) or (backdrop-filter: blur(rem(31)))) {
             background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(31px);
+            backdrop-filter: blur(rem(31));
         }
     }
     &__title {
@@ -89,12 +89,12 @@
         @include adaptiveValue("font-size", 20, 16);
         @include adaptiveValue("min-height", 75, 45);
         background-color: $orangeColor;
-        color: #fff;
+        color: $white;
         width: 100%;
         @media (any-hover: hover) {
             &:hover {
                 color: $orangeColor;
-                background-color: #fff;
+                background-color: $white;
             }
         }
     }
@@ -103,26 +103,25 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-
     @media (max-width: $tablet) {
         align-items: stretch;
         flex-direction: column-reverse;
     }
     &__controls {
         align-self: stretch;
-        @include adaptiveValue("margin-bottom", 20, 15);
+        @include adaptiveValue("margin-bottom", 20, 10, 1240, 991.98, 1);
         @media (max-width: $tablet) {
-            margin: 10px 0px;
+            margin-top: rem(10);
         }
     }
 
-    &__body {
-        overflow: visible;
+    &__swiper {
+        overflow: visible !important;
         @media (min-width: $tablet) {
             @include adaptiveValue("width", 934, 290);
         }
         @media (max-width: $tablet) {
-            margin: 0px -15px;
+            margin: 0px rem(-15);
         }
     }
 
@@ -130,26 +129,26 @@
         position: relative;
     }
 
-    &__image {
-        padding: 0px 0px 59% 0px;
+    &__image-ibg {
+        padding-bottom: 59%;
     }
 
     &__content {
-        min-width: 295px;
-        max-height: 300px;
+        min-width: rem(295);
+        max-height: rem(300);
         overflow: auto;
         color: inherit;
         display: flex;
         flex-direction: column;
         @include adaptiveValue("padding", 24, 15);
         background: rgba(255, 255, 255, 0.9);
-        @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+        @supports ((-webkit-backdrop-filter: blur(rem(31))) or (backdrop-filter: blur(rem(31)))) {
             background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(31px);
+            backdrop-filter: blur(rem(31));
         }
         @media (min-width: $mobile) {
             position: absolute;
-            min-width: 350px;
+            min-width: rem(350);
             @include adaptiveValue("right", 40, 0);
             @include adaptiveValue("bottom", 40, 0);
         }
@@ -160,7 +159,13 @@
         font-weight: 600;
         line-height: 120%;
         &:not(:last-child) {
-            margin: 0px 0px 4px 0px;
+            margin-bottom: rem(4);
+        }
+        transition: color 0.3s ease 0s;
+        @media (any-hover: hover) {
+            &:hover {
+                color: $orangeColor;
+            }
         }
     }
 
@@ -168,7 +173,7 @@
         line-height: 150%;
         color: $grayColor;
         &:not(:last-child) {
-            margin: 0px 0px 8px 0px;
+            margin-bottom: rem(8);
         }
     }
 
@@ -179,11 +184,11 @@
         align-items: center;
         font-weight: 600;
         justify-content: space-between;
+        column-gap: rem(10);
         @include adaptiveValue("font-size", 20, 16);
         &::before {
-            margin: 0px 0px 0px 10px;
-            font-size: 12px;
             color: $mainColor;
+            font-size: rem(12);
         }
     }
 }
@@ -193,7 +198,7 @@
     &__dotts {
         flex: 1 1 auto;
         @media (min-width: $tablet) {
-            padding: 0px 20px 0px 0px;
+            padding-right: rem(20);
         }
         @media (max-width: $tablet) {
             justify-content: center;
@@ -207,7 +212,7 @@
     }
 }
 
-//</ОСНОВНОЙ БЛОК>====================================================================================================
+//========================================================================================================================================================
 
 .advantages {
     @include adaptiveValue("padding-top", 88, 30);
@@ -220,10 +225,10 @@
 
     &__item {
         display: inline-grid;
-        padding: 15px 0px;
-        grid-template: auto auto / 85px 1fr;
+        padding: rem(15) 0px;
+        grid-template: auto auto / rem(85) 1fr;
         @media (max-width: $tablet) {
-            min-width: 280px;
+            min-width: rem(280);
         }
         @media (max-width: $mobile) {
             grid-template: auto auto / auto 1fr;
@@ -235,20 +240,19 @@
         align-self: center;
         grid-row: span 2;
         @media (max-width: $mobile) {
-            padding: 0px 15px 0px 0px;
+            padding-right: rem(15);
         }
     }
 
     &__title {
         font-weight: 600;
-        font-size: 18px;
+        font-size: rem(18);
         line-height: 150%;
-        margin: 0px 0px 2px 0px;
+        margin-bottom: rem(2);
     }
 
     &__text {
         font-weight: 500;
-        font-size: 16px;
         line-height: 150%;
         color: $grayColor;
     }
@@ -267,21 +271,21 @@
 
     &__items {
         display: grid;
-        gap: 32px;
-        grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+        gap: rem(32);
+        grid-template-columns: repeat(auto-fit, minmax(rem(285), 1fr));
     }
 
     &__item {
     }
 
     &__footer {
-        padding: 32px 0px 0px 0px;
+        padding-top: rem(32);
         text-align: center;
     }
 
     &__more {
-        border: 1px solid $orangeColor;
-        min-width: 245px;
+        border: rem(1) solid $orangeColor;
+        min-width: rem(245);
         &._hold {
             opacity: 0.2;
             cursor: default;
@@ -289,7 +293,7 @@
     }
 }
 .item-product {
-    background: #f4f5f7;
+    background: $light_03;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -311,32 +315,32 @@
     }
 
     &__label {
-        flex: 0 0 48px;
-        width: 48px;
+        flex: 0 0 rem(48);
+        width: rem(48);
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fff;
+        color: $white;
         font-weight: 500;
         &:not(:last-child) {
-            margin: 0px 0px 10px 0px;
+            margin-bottom: rem(10);
         }
         &_sale {
-            background: #e97171;
+            background-color: #e97171;
         }
         &_new {
-            background: #2ec1ac;
+            background-color: #2ec1ac;
         }
     }
 
-    &__image {
+    &__image-ibg {
         padding-bottom: percent(301, 285);
     }
 
     &__body {
         flex: 1 1 auto;
-        padding: 16px 16px 30px 16px;
+        padding: rem(16) rem(16) rem(30) rem(16);
         display: flex;
         flex-direction: column;
     }
@@ -371,7 +375,7 @@
         &_old {
             @include adaptiveValue("font-size", 16, 14);
             font-weight: normal;
-            margin: 0px 0px 0px 16px;
+            margin-left: rem(16);
             color: #b0b0b0;
             text-decoration: line-through;
         }
@@ -379,11 +383,11 @@
 
     &__actions {
         @media (any-hover: none) {
-            padding: 15px 0px 0px 0px;
+            padding-top: rem(15);
         }
         @media (any-hover: hover) {
             opacity: 0;
-            transition: all 0.3s ease 0s;
+            transition: visibility 0.3s ease 0s, opacity 0.3s ease 0s;
             visibility: hidden;
             position: absolute;
             top: 0;
@@ -408,7 +412,7 @@
     &__button {
         flex: 1 1 100%;
         &:not(:last-child) {
-            margin: 0px 0px 24px 0px;
+            margin-bottom: rem(24);
         }
         &._hold {
             opacity: 0.2;
@@ -423,12 +427,12 @@
         font-weight: 600;
         transition: color 0.3s ease 0s;
         &::before {
-            margin: 0px 10px 0px 0px;
-            font-size: 16px;
+            margin-right: rem(10);
+            font-size: rem(16);
             color: inherit;
         }
         @media (any-hover: hover) {
-            color: #fff;
+            color: $white;
             &:hover {
                 color: $orangeColor;
             }
@@ -439,7 +443,7 @@
 //========================================================================================================================================================
 
 .rooms {
-    background-color: #fcf8f3;
+    background-color: $light_01;
     @include adaptiveValue("padding-top", 44, 30);
     @include adaptiveValue("padding-bottom", 44, 30);
     &__container {
@@ -457,15 +461,15 @@
             @include adaptiveValue("padding-right", 80, 30);
         }
         @media (max-width: $tablet) {
-            margin: 0px 0px 30px 0px;
+            margin-bottom: rem(30);
         }
     }
 
     &__title {
-        &:not(:last-child) {
-            margin: 0px 0px 8px 0px;
-        }
         text-align: left;
+        &:not(:last-child) {
+            margin-bottom: rem(8);
+        }
     }
 
     &__text {
@@ -478,11 +482,11 @@
 
     &__button {
         background: $orangeColor;
-        color: #fff;
-        min-width: 180px;
+        color: $white;
+        min-width: rem(180);
         @media (any-hover: hover) {
             &:hover {
-                background-color: #fff;
+                background-color: $white;
                 color: $orangeColor;
             }
         }
@@ -493,14 +497,14 @@
         min-width: 0;
         align-self: flex-start;
         @media (max-width: $mobileSmall) {
-            margin: 0px -15px;
+            margin: 0px rem(-15);
         }
     }
 }
 .slider-rooms {
     position: relative;
-    &__body {
-        overflow: visible;
+    &__swiper {
+        overflow: visible !important;
         position: relative;
         &::before {
             content: "";
@@ -510,18 +514,18 @@
             width: 100vw;
             left: 0;
             z-index: 2;
-            background-color: #fcf8f3;
+            background-color: $light_01;
             transform: translate(-100%, 0px);
         }
     }
 
     &__slide {
-        width: 372px;
+        width: rem(372);
         position: relative;
         overflow: hidden;
         @include adaptiveValue("min-height", 585, 400);
         &.swiper-slide-active {
-            .slider-rooms__image {
+            .slider-rooms__image-ibg {
                 height: 100%;
             }
         }
@@ -530,7 +534,7 @@
         }
     }
 
-    &__image {
+    &__image-ibg {
         transition: height 0.8s ease 0s;
         height: 100%;
         @media (min-width: $mobile) {
@@ -541,27 +545,27 @@
     &__content {
         position: absolute;
         color: inherit;
-        max-width: 240px;
+        max-width: rem(240);
         @include adaptiveValue("left", 24, 15);
         @include adaptiveValue("bottom", 24, 15);
         @include adaptiveValue("padding", 32, 15);
         background-color: rgba(255, 255, 255, 0.9);
-        @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+        @supports ((-webkit-backdrop-filter: blur(rem(31))) or (backdrop-filter: blur(rem(31)))) {
             background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(31px);
+            backdrop-filter: blur(rem(31));
         }
         &::before {
             position: absolute;
             bottom: 0;
             right: 0;
             transform: translate(100%, 0px);
-            width: 48px;
-            height: 48px;
+            width: rem(48);
+            height: rem(48);
             background-color: $orangeColor;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: $white;
         }
     }
 
@@ -578,26 +582,26 @@
         position: absolute;
         top: 50%;
         transform: translate(0px, -50%);
-        width: calc(100% - 48px);
-        left: 24px;
+        width: calc(100% - rem(48));
+        left: rem(24);
         z-index: 5;
         justify-content: space-between;
         @media (min-width: $pc) {
-            width: calc(100% + 48px);
-            left: -24px;
+            width: calc(100% + rem(48));
+            left: rem(-24);
         }
     }
 
     &__dotts {
         @media (min-width: $mobile) {
             position: absolute;
-            bottom: 30px;
+            bottom: rem(30);
             width: 100%;
-            left: 396px;
+            left: rem(396);
         }
         @media (max-width: $mobile) {
             justify-content: center;
-            padding: 15px 0px 0px 0px;
+            padding-top: rem(15);
         }
     }
 }
@@ -616,9 +620,10 @@
     &__slider {
     }
 }
+
 .slider-tips {
     position: relative;
-    &__body {
+    &__swiper {
         @include adaptiveValue("margin-right", -32, -15);
         @include adaptiveValue("margin-left", -32, -15);
         @include adaptiveValue("padding", 32, 15);
@@ -630,19 +635,19 @@
         transition: box-shadow 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
-                box-shadow: 0 0 32px rgba(97, 97, 97, 0.2);
+                box-shadow: 0 0 rem(32) rgba(97, 97, 97, 0.2);
             }
         }
     }
 
-    &__image {
+    &__image-ibg {
         padding-bottom: percent(251, 391);
     }
 
     &__content {
         display: flex;
         flex-direction: column;
-        padding: 15px;
+        padding: rem(15);
         flex: 1 1 auto;
         align-items: flex-start;
     }
@@ -653,9 +658,9 @@
         font-weight: 600;
         line-height: 120%;
         @include adaptiveValue("font-size", 24, 18);
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s;
         &:not(:last-child) {
-            margin: 0px 0px 8px 0px;
+            margin-bottom: rem(8);
         }
         @media (any-hover: hover) {
             &:hover {
@@ -666,7 +671,7 @@
 
     &__text {
         color: $grayColor;
-        font-size: 14px;
+        font-size: rem(14);
         line-height: 150%;
     }
 
@@ -680,13 +685,13 @@
         position: absolute;
         top: 50%;
         transform: translate(0px, -50%);
-        width: calc(100% - 48px);
-        left: 24px;
+        width: calc(100% - rem(48));
+        left: rem(24);
         z-index: 5;
         justify-content: space-between;
         @media (min-width: $pc) {
-            width: calc(100% + 48px);
-            left: -24px;
+            width: calc(100% + rem(48));
+            left: rem(-24);
         }
         @media (max-width: $mobileSmall) {
             display: none;
@@ -706,7 +711,7 @@
         line-height: 150%;
         @include adaptiveValue("font-size", 20, 16);
         &:not(:last-child) {
-            margin: 0px 0px 8px 0px;
+            margin-bottom: rem(8);
         }
     }
 
@@ -727,7 +732,7 @@
         grid-template-columns: auto;
         grid-auto-flow: column;
         align-items: center;
-        gap: 16px;
+        gap: rem(16);
         @media (any-hover: hover) {
             justify-content: center;
         }
@@ -737,7 +742,7 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        margin: 0px -8px;
+        margin: 0px rem(-8);
         &:first-child {
             justify-content: flex-end;
         }
@@ -745,12 +750,12 @@
 
     &__row {
         display: inline-grid;
-        padding: 0px 8px;
-        gap: 16px;
+        padding: 0px rem(8);
+        gap: rem(16);
         grid-template-columns: auto;
         grid-auto-flow: column;
         &:not(:last-child) {
-            margin: 0px 0px 16px 0px;
+            margin-bottom: rem(16);
         }
     }
 }

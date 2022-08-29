@@ -24,6 +24,7 @@ $light_01: #fcf8f3;
 $light_02: #e0e0e0;
 $light_03: #f4f5f7;
 $light_04: #d8d8d8;
+$light_05: #f9f1e7;
 $blue: #262f56;
 $orangeColor: #e89f71;
 $grayColor: #898989;
@@ -59,6 +60,7 @@ $responsiveType: 1;
 @import "base/null";
 
 body {
+    @include scrollbars(rem(10), $orangeColor, $white);
     // Скролл заблокирован
     .lock & {
         overflow: hidden;

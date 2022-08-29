@@ -2,8 +2,8 @@ import Swiper, { Navigation, Parallax, Pagination, Keyboard } from "swiper";
 import "../../scss/base/swiper.scss";
 
 function initSliders() {
-    if (document.querySelector(".slider-main__body")) {
-        new Swiper(".slider-main__body", {
+    if (document.querySelector(".slider-main__swiper")) {
+        new Swiper(".slider-main__swiper", {
             modules: [Navigation, Pagination, Parallax, Keyboard],
             observer: true,
             observeParents: true,
@@ -30,8 +30,8 @@ function initSliders() {
         });
     }
 
-    if (document.querySelector(".slider-rooms__body")) {
-        new Swiper(".slider-rooms__body", {
+    if (document.querySelector(".slider-rooms__swiper")) {
+        new Swiper(".slider-rooms__swiper", {
             modules: [Navigation, Pagination, Parallax, Keyboard],
             observer: true,
             observeParents: true,
@@ -57,8 +57,8 @@ function initSliders() {
         });
     }
 
-    if (document.querySelector(".slider-tips__body")) {
-        new Swiper(".slider-tips__body", {
+    if (document.querySelector(".slider-tips__swiper")) {
+        new Swiper(".slider-tips__swiper", {
             modules: [Navigation, Pagination, Parallax, Keyboard],
             observer: true,
             observeParents: true,
