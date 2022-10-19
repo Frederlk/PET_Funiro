@@ -282,6 +282,11 @@
     }
 
     &__item {
+        &.loaded {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: translate(0px, 0px) !important;
+        }
     }
 
     &__footer {

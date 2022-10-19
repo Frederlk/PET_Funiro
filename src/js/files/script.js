@@ -88,7 +88,7 @@ window.onload = function () {
                 const productLikeUrl = item.likeUrl;
                 const productLabels = item.labels;
 
-                let productTemplateStart = `<article data-pid="${productId}" class="products__item item-product">`;
+                let productTemplateStart = `<article data-pid="${productId}" class="products__item item-product loaded">`;
                 let productTemplateEnd = `</article>`;
 
                 let productTemplateLabels = "";
